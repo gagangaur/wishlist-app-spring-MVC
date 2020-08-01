@@ -43,9 +43,6 @@ public class HomeController {
 
 		@SuppressWarnings("unchecked")
 		List<WishEntity> allWishArrayList = (ArrayList<WishEntity>) context.getAttribute("allWish");
-		if (allWishArrayList == null) {
-			allWishArrayList = new ArrayList<WishEntity>();
-		}
 		allWishArrayList.add(wishEntity);
 		context.setAttribute("allWish", allWishArrayList);
 		m.addAttribute("allWishes", allWishArrayList);
