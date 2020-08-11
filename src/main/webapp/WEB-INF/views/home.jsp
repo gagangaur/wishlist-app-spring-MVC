@@ -15,19 +15,13 @@
 <!--Import materialize.css-->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>WishList</title>
-<style>
-.img-wish {
-  width: 100%;
-  
-  height: 70vh;
-  }
-</style>
 </head>
 
 <body>
@@ -64,7 +58,7 @@
 						<img
 							src="${pageContext.request.contextPath}/resources/images/wish.svg"
 							alt="wish image" class="img-wish">
-						</div>
+					</div>
 				</c:if>
 
 
@@ -107,17 +101,23 @@
 					<ul class="collapsible">
 						<c:forEach items="${allWishes}" var="wish">
 							<li>
-								<div class="collapsible-header">
-									<i class="material-icons">filter_drama</i>
+								<div class="collapsible-header hoverable text">
+									<i class="material-icons teal"
+										style="margin-top: 6px; color: white; background-color: #26A69A; padding: 2px">send</i>
 									<c:out value="${wish.wishTitleString}"></c:out>
-									<span class="new  badge" data-badge-caption=""><c:out
-											value="${wish.wishDate}"></c:out></span>
+									<span class="new  badge " data-badge-caption=""
+										style="margin-top: 8px"><c:out value="${wish.wishDate}"></c:out></span>
+									<span><a
+										href='<c:url value="/delete/${wish.id}"></c:url>'><i
+											class="material-icons delete-icon hvr-buzz-out"
+											style="font-size: 1.5em">delete</i></a></span>
 								</div>
 								<div class="collapsible-body">
 									<h5>
 										<c:out value="${wish.wishContentString}"></c:out>
 									</h5>
 								</div>
+
 							</li>
 						</c:forEach>
 					</ul>

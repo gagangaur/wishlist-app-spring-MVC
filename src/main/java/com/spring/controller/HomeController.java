@@ -6,13 +6,16 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.spring.dao.WishDAO;
 import com.spring.entities.WishEntity;
@@ -22,7 +25,7 @@ public class HomeController {
 
 //	@Autowired
 //	ServletContext context;
-	
+
 	@Autowired
 	WishDAO wishDao;
 
@@ -64,5 +67,13 @@ public class HomeController {
 		List<WishEntity> allWishArrayList = wishDao.getAllWish();
 		m.addAttribute("allWishes", allWishArrayList);
 		return "home";
+	}
+
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public RedirectView deleteWish(@PathVariable("id") int id,HttpServletRequest req) {
+		wishDao.deleteWish(id);
+		RedirectView redirectView = new RedirectView();
+		redirectView.setUrl(req.getContextPath() + "/savewish");
+		return redirectView;
 	}
 }
