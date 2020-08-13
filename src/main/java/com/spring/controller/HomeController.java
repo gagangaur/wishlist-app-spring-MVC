@@ -54,7 +54,6 @@ public class HomeController {
 		wishDao.addWish(wishEntity);
 		List<WishEntity> allWishArrayList = wishDao.getAllWish();
 		m.addAttribute("allWishes", allWishArrayList);
-		System.out.println(allWishArrayList);
 		m.addAttribute("page", "viewwishes");
 		return "home";
 	}
@@ -74,6 +73,22 @@ public class HomeController {
 		wishDao.deleteWish(id);
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl(req.getContextPath() + "/savewish");
+		return redirectView;
+	}
+	
+	@RequestMapping(value = "/update/{id}",method = RequestMethod.GET)
+	public String getUpdateWish(@PathVariable("id") int id,Model m) {
+		WishEntity  wish = wishDao.getWish(id);
+		m.addAttribute("wishEntity",wish);
+		System.out.println(wish);
+		return "update";
+	}
+	@RequestMapping(value = "/updatewish",method=RequestMethod.POST)
+	public RedirectView saveUpdatedWish(@ModelAttribute("wishEntity") WishEntity wish,HttpServletRequest req){
+		wish.setWishDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
+		wishDao.updateWish(wish);
+		RedirectView redirectView = new RedirectView();
+		redirectView.setUrl(req.getContextPath()+"/savewish");
 		return redirectView;
 	}
 }

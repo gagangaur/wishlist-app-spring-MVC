@@ -12,6 +12,13 @@
   :hover.delete-icon{
   color:red
   }
+  .update-icon{
+  color:#26A69A;
+  }
+  :hover.update-icon{
+  color:orange;
+ 
+  }
   @-webkit-keyframes hvr-buzz-out {
   10% {
     -webkit-transform: translateX(3px) rotate(2deg);

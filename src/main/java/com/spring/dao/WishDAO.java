@@ -30,5 +30,12 @@ public class WishDAO {
 		WishEntity wish = this.hibernateTemplate.get(WishEntity.class, id);
 		this.hibernateTemplate.delete(wish);
 	}
+	public WishEntity getWish(int id) {
+		WishEntity wishEntity = this.hibernateTemplate.get(WishEntity.class, id);
+		return wishEntity;
+	}
 	
+	public void updateWish(WishEntity wish) {
+		this.hibernateTemplate.update(wish);
+		}
 }
