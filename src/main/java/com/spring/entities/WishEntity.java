@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "wish")
@@ -14,12 +16,21 @@ public class WishEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
+	@NotNull
 	@Column(name = "title")
+	
+	@NotNull
 	private String wishTitleString;
+	
+	@NotNull
 	@Column(name="content")
 	private String wishContentString;
+	
+	@NotNull
 	@Column(name="date")
 	private String wishDate;
+	
 	public WishEntity() {
 		super();
 		// TODO Auto-generated constructor stub

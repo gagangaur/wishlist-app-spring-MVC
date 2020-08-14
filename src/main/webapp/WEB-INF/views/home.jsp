@@ -53,7 +53,7 @@
 									<i class="material-icons prefix">mode_edit</i>
 									<form:textarea path="wishTitleString" id="icon_prefix1"
 										cssClass="materialize-textarea"></form:textarea>
-									<form:label path="wishTitleString" for="icon_prefix1">Title</form:label>
+									<form:label path="wishTitleString" for="icon_prefix1">Wish Title</form:label>
 								</div>
 							</div>
 							<br />
@@ -62,7 +62,7 @@
 									<i class="material-icons prefix">mode_edit</i>
 									<form:textarea path="wishContentString" id="icon_prefix2"
 										cssClass="materialize-textarea"></form:textarea>
-									<form:label path="wishContentString" for="icon_prefix2">Content</form:label>
+									<form:label path="wishContentString" for="icon_prefix2">Wish Content</form:label>
 								</div>
 							</div>
 							<br />
@@ -90,8 +90,7 @@
 									<span><a
 										href='<c:url value="/delete/${wish.id}"></c:url>'><i
 											class="material-icons delete-icon hvr-buzz-out"
-											style="font-size: 1.5em">delete</i></a></span>
-											<span><a
+											style="font-size: 1.5em">delete</i></a></span> <span><a
 										href='<c:url value="/update/${wish.id}"></c:url>'><i
 											class="material-icons update-icon hvr-buzz-out"
 											style="font-size: 1.5em">create</i></a></span>

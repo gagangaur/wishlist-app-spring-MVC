@@ -43,6 +43,7 @@ public class HomeController {
 		return "home";
 	}
 
+//	saving a wish
 	@RequestMapping(value = "/savewish", method = RequestMethod.POST)
 	public String saveWish(@ModelAttribute("wishEntity") WishEntity wishEntity, Model m) {
 		wishEntity.setWishDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
@@ -58,6 +59,7 @@ public class HomeController {
 		return "home";
 	}
 
+//	showing all wishes
 	@RequestMapping(value = "/savewish", method = RequestMethod.GET)
 	public String viewWishes(Model m) {
 		m.addAttribute("page", "viewwishes");
@@ -68,27 +70,33 @@ public class HomeController {
 		return "home";
 	}
 
+//	deleting a wish
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public RedirectView deleteWish(@PathVariable("id") int id,HttpServletRequest req) {
+	public RedirectView deleteWish(@PathVariable("id") int id, HttpServletRequest req) {
 		wishDao.deleteWish(id);
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl(req.getContextPath() + "/savewish");
 		return redirectView;
 	}
-	
-	@RequestMapping(value = "/update/{id}",method = RequestMethod.GET)
-	public String getUpdateWish(@PathVariable("id") int id,Model m) {
-		WishEntity  wish = wishDao.getWish(id);
-		m.addAttribute("wishEntity",wish);
-		System.out.println(wish);
+
+//	redirecting to update page
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String getUpdateWish(@PathVariable("id") int id, Model m, HttpServletRequest req) {
+		WishEntity wish = wishDao.getWish(id);
+		m.addAttribute("wishEntity", wish);
+		req.setAttribute("id", id);
 		return "update";
 	}
-	@RequestMapping(value = "/updatewish",method=RequestMethod.POST)
-	public RedirectView saveUpdatedWish(@ModelAttribute("wishEntity") WishEntity wish,HttpServletRequest req){
+
+//	updating the wish
+	@RequestMapping(value = "/updatewish", method = RequestMethod.POST)
+	public RedirectView saveUpdatedWish(@ModelAttribute("wishEntity") WishEntity wish, HttpServletRequest req) {
 		wish.setWishDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date()));
+		int id = (int) req.getServletContext().getAttribute("id");
+		wish.setId(id);
 		wishDao.updateWish(wish);
 		RedirectView redirectView = new RedirectView();
-		redirectView.setUrl(req.getContextPath()+"/savewish");
+		redirectView.setUrl(req.getContextPath() + "/savewish");
 		return redirectView;
 	}
 }

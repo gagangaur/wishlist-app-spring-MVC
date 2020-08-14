@@ -36,9 +36,13 @@
 					</button>
 				</a>
 				<button class="btn waves-effect waves-light btn-large z-depth-5 "
-					style="margin-right: 6em" type="submit" name="action">
+					style="margin-right: 6em;background-color: orange" type="submit" name="action">
 					Update <i class="material-icons right">send</i>
 				</button>
+				<%
+					int id = (int) request.getAttribute("id");
+						pageContext.setAttribute("id", id, PageContext.APPLICATION_SCOPE);
+				%>
 			</form:form>
 		</div>
 	</div>
